@@ -16,7 +16,8 @@ class Config:
     You are a classification agent. Identify:
     1. Input format (JSON, Email, or PDF)
     2. Intent (Invoice, RFQ, Complaint, etc.)
-    Respond ONLY in JSON format: {"format": "...", "intent": "..."}
+    Respond STRICTLY in JSON format with ONLY these keys:
+    {"format": "...", "intent": "..."}
     """)
     
     JSON_AGENT_PROMPT = SystemMessage(content="""
@@ -24,8 +25,8 @@ class Config:
     1. Reformat input JSON to match target schema
     2. Identify anomalies
     3. Flag missing fields
-    Required output format:
-    {"formatted_data": {...}, "anomalies": [], "missing_fields": []}
+    Respond STRICTLY in JSON format with ONLY these keys:
+    {"formatted_data": {...}, "anomalies": [...], "missing_fields": [...]}
     """)
     
     EMAIL_AGENT_PROMPT = SystemMessage(content="""
@@ -33,5 +34,7 @@ class Config:
     - sender - recipient - subject
     - intent - urgency (Low/Medium/High)
     - key content
-    Return as JSON with these fields.
+   Respond STRICTLY in JSON format with ONLY these keys:
+    {"sender": "...", "recipient": "...", "subject": "...", "intent": "...", "urgency": "...", "key_content": "..."}
+
     """)

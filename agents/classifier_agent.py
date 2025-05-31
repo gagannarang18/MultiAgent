@@ -1,6 +1,7 @@
 from langchain_core.messages import HumanMessage
 from config import Config
 from pypdf import PdfReader
+import json
 
 class ClassifierAgent:
     def __init__(self):
@@ -23,7 +24,10 @@ class ClassifierAgent:
             HumanMessage(content=f"Input data: {str(input_data)[:1000]}")
         ]
         response = self.llm.invoke(messages)
-        return response.content.get("format", "Unknown")
+        try:
+            return json.loads(response.content)["format"]  # Parse JSON string
+        except:
+            return "Unknown"
     
     def detect_intent(self, content):
         messages = [
