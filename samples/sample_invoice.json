@@ -1,0 +1,9 @@
+{
+  "invoice_number": "INV-2024-1001",
+  "date": "2024-05-30",
+  "client": "Global Corp",
+  "items": [
+    {"name": "Premium Service", "quantity": 1, "price": 999.99}
+  ],
+  "total": 999.99
+}
