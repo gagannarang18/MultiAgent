@@ -1,3 +1,4 @@
+import json
 from langchain_core.messages import HumanMessage
 from config import Config
 
@@ -27,4 +28,4 @@ class JSONAgent:
         ]
         
         response = self.llm.invoke(messages)
-        return response.content
+        return json.loads(response.content)  # Assuming the response is a JSON string
