@@ -51,36 +51,18 @@ This project implements a multi-agent AI system that classifies input formats an
 ## Tech Stack
 
 - **Language**: Python
-- **Models**: OpenAI / Open-source LLMs
-- **Memory**: Redis / SQLite / JSON store
+- **Models**: Open-source LLMs(Groq cloud)
+- **Memory**:  SQLite 
 
 ---
 
 ## Demo
 
 📽️ **[Watch the demo video](demo_video_link)**  
-📷 **Screenshots** available in the `screenshots/` folder.
+📷 **Screenshots** available in the `demo_screenshots/` folder.
 
 ---
 
-## Folder Structure
-
-```
-├── classifier_agent/
-├── json_agent/
-├── email_agent/
-├── shared_memory/
-├── sample_inputs/
-│   ├── sample_email.txt
-│   ├── sample_invoice.pdf
-│   └── sample_payload.json
-├── screenshots/
-├── demo.mp4
-├── README.md
-└── main.py
-```
-
----
 
 ## How to Run
 
