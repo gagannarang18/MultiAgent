@@ -1,0 +1,4 @@
+From: jane.smith@client.com
+To: sales@company.com
+Subject: Request for Quotation
+Body: Please send quote for 100 units of Product X. Delivery needed by June 15.
