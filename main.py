@@ -5,6 +5,7 @@ from memory.shared_memory import SharedMemory
 import os
 from dotenv import load_dotenv
 import json
+import traceback  # Add this import
 
 load_dotenv()
 
@@ -15,25 +16,22 @@ class MultiAgentSystem:
         self.email_agent = EmailAgent()
         self.memory = SharedMemory()
     
-    def process_input(self, input_data, conversation_id=None):
+    def process_input(self, input_data):
         try:
             format, intent = self.classifier.process(input_data)
             
             if format == "JSON":
-                if isinstance(input_data, str):
-                    input_data = json.loads(input_data)
                 result = self.json_agent.process(input_data)
             elif format == "Email":
                 result = self.email_agent.process(input_data)
             else:
                 result = {"error": f"Unsupported format: {format}"}
-            
+
             self.memory.log_context(
                 source=str(input_data)[:100],
                 format=format,
                 intent=intent,
-                extracted_fields=result,
-                conversation_id=conversation_id
+                extracted_fields=result
             )
             
             return {
@@ -45,7 +43,8 @@ class MultiAgentSystem:
         except Exception as e:
             return {
                 "status": "error",
-                "error": str(e)
+                "error": str(e),
+                "traceback": traceback.format_exc()
             }
 
 if __name__ == "__main__":
